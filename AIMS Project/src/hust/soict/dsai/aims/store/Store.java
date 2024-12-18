@@ -142,4 +142,23 @@ public class Store {
             System.out.println("Not in store");
         }
     }
+    public Media[] getItemsInStore() {
+		
+		Media[] res = new Media[itemsInStore.size()];
+		if(itemsInStore.size() == 0) {
+			return null;
+		}
+		res = itemsInStore.toArray(res);
+		return res;
+	}
+
+    public void addMedia(Media ...medias) {
+		for (Media m: medias) {
+			addMedia(m);
+		}
+	}
+    public ArrayList<Media> getItemsInStore1() {
+        return itemsInStore;
+    }
+    
 }

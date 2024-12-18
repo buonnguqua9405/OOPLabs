@@ -7,6 +7,15 @@ public class Book extends Media {
         super(id, title, category, cost);
         this.authors = authors;
     }
+
+    public Book(String book_title) {
+		super(book_title, "null", 0);
+	}
+
+    public Book(String book_title, String book_category, float book_cost) {
+		super(book_title, book_category, book_cost);
+	}
+
     public void addAuthor(String authorName) {
         boolean found = false;
         for (String name : authors) {

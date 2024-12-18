@@ -3,16 +3,20 @@ package hust.soict.dsai.aims.cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.MediaComparatorByCostTitle;
 import hust.soict.dsai.aims.media.MediaComparatorByTitleCost;
-import hust.soict.dsai.aims.media.Playable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Collections;
 
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import javax.naming.LimitExceededException;
 public class Cart {
     private static final int max_numbers_ordered = 20;
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>(max_numbers_ordered);
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
     public static final Comparator<Media> Compare_by_title_cost = new MediaComparatorByTitleCost();
     public static final Comparator<Media> Compare_by_cost_title = new MediaComparatorByCostTitle();
     public Cart() {
@@ -52,21 +56,21 @@ public class Cart {
             System.out.println("Disc not found");
         } 
     }
-    public void addMedia(Media media) {
-        boolean found = false;
-        for (Media m: itemsOrdered) {
-            if (m.equals(media)) {
-                found = true;
-                break;
-            }
-        }
-        if (found) {
-            System.out.println("Already in cart");
-        } else {
-            itemsOrdered.add(media);
-            System.out.println("Added successfully");
-        }
-    }
+    public void addMedia(Media media) throws LimitExceededException {
+		if (itemsOrdered.size() == max_numbers_ordered) {
+			throw new LimitExceededException("ERROR: The number of media has reached its limit");
+		}
+		
+		if (itemsOrdered.add(media)) {
+			System.out.println("The media has been successfully added.");
+		} else {
+			System.out.println("Something wrong happened. Please try again.");
+		}
+		
+		if(itemsOrdered.size() == max_numbers_ordered) {
+			System.out.println("Info: The cart is full.");
+		}
+	}
     public void removeMedia(Media media) {
         boolean found = false;
         for (Media m: itemsOrdered) {
@@ -82,6 +86,20 @@ public class Cart {
             System.out.println("Not in cart");
         }
     }
+
+    public void addMedia(Media ...media) throws LimitExceededException {
+		int numDisc = media.length;
+		if (itemsOrdered.size() + numDisc > max_numbers_ordered) {
+			System.out.println("Cannot add all select media, the cart does not have enough space.");
+			return;
+		} else {
+			for (Media m: media) {
+				addMedia(m);
+			}
+		}
+		
+	}
+
     public boolean Contains(Object o) {
         boolean found = false;
         for (Media m: itemsOrdered) {
@@ -122,11 +140,9 @@ public class Cart {
         return false;
     }
     public void emptyCart() {
-        for (Media m: itemsOrdered) {
-            itemsOrdered.remove(m);
-        }
-    }
-    public void filterCart(Scanner sc) {
+		itemsOrdered = FXCollections.observableArrayList();
+	}
+    public void filterCart(Scanner sc) throws LimitExceededException {
         System.out.println("1. Filter by id");
         System.out.println("2. Filter by title");
         System.out.println("3. Back");
@@ -208,19 +224,23 @@ public class Cart {
             this.emptyCart();
         }
     }
-    public void playMedia(Scanner sc) {
-        System.out.println("Enter the title of the media");
-        String title4 = sc.nextLine(); 
-        Media media4 = this.findMedia(title4);
-        if (media4 != null) {
-            if (media4 instanceof Playable) {
-                ((Playable) media4).play();
-            }else {
-                System.out.println("This media cannot be played");
-            }
-        } else {
-            System.out.println("Media not found");
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+    public List<Media> searchById(String keyword) {
+        try {
+            int id = Integer.parseInt(keyword);
+            return itemsOrdered.stream().filter(media -> media.getId() == id).collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            return Collections.emptyList();
         }
+    }
+    public List<Media> searchByTitle(String keyword) {
+        return itemsOrdered.stream().filter(media -> media.getTitle().toLowerCase().contains(keyword.toLowerCase())).collect(Collectors.toList());
+    }
+    public void addMedia(Scanner sc) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addMedia'");
     }
 }
 

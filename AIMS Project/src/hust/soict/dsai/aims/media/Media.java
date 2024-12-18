@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims.media;
 
 public abstract class Media {
+    private static int nbMedia = 0;
     private int id;
     private String title;
     private String category;
@@ -11,6 +12,19 @@ public abstract class Media {
         this.category = category;
         this.cost = cost;
     }
+
+    public Media(String media_title, String media_category, float media_cost) {
+		if(media_title.isBlank()) {
+			title = "Unknown";
+			System.out.println("Warning: Media created without title.");
+		} else {
+			title = media_title;
+		}
+		category = media_category;
+		cost = media_cost;
+		id = nbMedia++;
+	}
+
     public int getId() {
         return id;
     }
@@ -41,14 +55,13 @@ public abstract class Media {
         + "Category: " + category + "\n"
         + "Cost: " + cost + ".";
     }
-    public boolean equals(Object o) {
-       if (this == o) {
-        return true;
-       }
-       if (o == null || this.getClass() != o.getClass()) {
-        return false;
-       }
-       Media media = (Media) o;
-       return title.equals(media.getTitle());
+    public boolean equals(Object obj) {
+        try {
+            Media otherMedia = (Media) obj;
+
+            return this.title != null && this.title.equals(otherMedia.getTitle());
+        } catch (NullPointerException | ClassCastException e) {
+            return false; 
+        }
     }
 }

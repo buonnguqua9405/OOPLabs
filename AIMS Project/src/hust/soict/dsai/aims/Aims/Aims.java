@@ -2,12 +2,22 @@ package hust.soict.dsai.aims.Aims;
 
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
+import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.CompactDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.store.Store;
 
 public class Aims {
+    public static Store store = new Store();
+    public static Cart cart = new Cart();
+
     public static void showMenu() {
         System.out.println("AIMS: ");
         System.out.println("--------------------------------");
@@ -50,7 +60,29 @@ public class Aims {
         System.out.println("--------------------------------");
         System.out.println("Please choose a number: 0-1-2-3-4-5.");
     }
-    public static void main(String[] args) {
+
+    public static void init() {
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("a");
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("b","c",10);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("e", "f", "g", 5);
+        DigitalVideoDisc dvd4 = new DigitalVideoDisc("h", "i", "j", 99, 7.5f);
+        
+        Track track1 = new Track("abcdefg", 6);
+        Track track2 = new Track("hijklmnop", 5);
+        
+        CompactDisc cd1 = new CompactDisc("aa", "b", "cc", 60, 9);
+        cd1.addTrack(track1, track2);
+        CompactDisc cd2 = new CompactDisc("ab", "bb", "dd", 6);
+        CompactDisc cd3 = new CompactDisc("zz", "yz", 10);
+        CompactDisc cd4 = new CompactDisc("a-z");
+        
+        
+        Book book1 = new Book("JJ");
+        Book book2 = new Book("AA", "ZZ", 8);
+        
+        store.addMedia(dvd1,dvd2,dvd3,dvd4,cd1,cd2,cd3,cd4,book1,book2);
+    }
+    public static void main(String[] args) throws PlayerException, LimitExceededException {
         Store store = new Store();
         Cart cart = new Cart();
         Scanner sc = new Scanner(System.in);
@@ -151,7 +183,7 @@ public class Aims {
                                                 cart.removeCart(sc);
                                                 break;
                                             case 4:
-                                                cart.playMedia(sc);
+                                                cart.addMedia(sc);
                                                 break;
                                             case 5:
                                                 if (cart.isEmpty()) {
@@ -209,7 +241,7 @@ public class Aims {
                             cart.removeCart(sc);
                             break;
                         case 4:
-                            cart.playMedia(sc);
+                            cart.addMedia(sc);
                             break;
                         case 5:
                             if (cart.isEmpty()) {

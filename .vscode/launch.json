@@ -1,0 +1,114 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Numbergrid",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.swing.Numbergrid",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "AWTAccumulator",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.swing.AWTAccumulator",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "SwingAccumulator",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.swing.SwingAccumulator",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "AddCompactDiscToStoreScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.AddCompactDiscToStoreScreen",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.Test",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "AddDigitalVideoDiscToStoreScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.AddDigitalVideoDiscToStoreScreen",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "AddBookToStoreScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.AddBookToStoreScreen",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "StoreScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.StoreScreen",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "CartScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.CartScreen",
+            "projectName": "Lab03_4c9a1d78",
+            "vmArgs": "--module-path \"C:/Users/Admin/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib\" --add-modules javafx.controls,javafx.fxml,javafx.swing,javafx.base"
+        },
+        {
+            "type": "java",
+            "name": "Painter",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.javafx.Painter",
+            "projectName": "Lab03_4c9a1d78",
+            "vmArgs": "--module-path \"C:/Users/Admin/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib\" --add-modules javafx.controls,javafx.fxml,javafx.swing,javafx.base"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Aims",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.Aims.Aims",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "Carttest",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.test.cart.Carttest",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "TestPassingParameter",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.test.disc.TestPassingParameter",
+            "projectName": "Lab03_4c9a1d78"
+        },
+        {
+            "type": "java",
+            "name": "Storetest",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.test.store.Storetest",
+            "projectName": "Lab03_4c9a1d78"
+        }
+    ]
+}

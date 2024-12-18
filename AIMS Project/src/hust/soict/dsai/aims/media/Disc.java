@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class Disc extends Media {
     private int length;
     private String director;
@@ -14,10 +16,12 @@ public class Disc extends Media {
         this.length = length;
         this.director = director;
     }
-    public void play() {
-        System.out.println("Playing Disc: " + this.getTitle());
-        System.out.println("Disc length: " + this.getLength());
-    }
+
+    public Disc(String disc_title, String disc_category, String disc_director, int disc_length, float disc_cost) {
+		super(disc_title, disc_category, disc_cost);
+		director = disc_director;
+		length = disc_length;
+	}
     public String toString() {
         return "Id: " + this.getId() + "\n"
         + "Title: " + this.getTitle() + "\n"
@@ -26,4 +30,13 @@ public class Disc extends Media {
         + "Length" + this.getLength() + "\n"
         + "Director" + this.getDirector() + ".";
     } 
+
+    public void play() throws PlayerException {
+		if(getLength() > 0) {
+			System.out.println("Playing: " + getTitle());			
+			System.out.println("Length: " + String.valueOf(getLength()));
+		} else {
+			throw new PlayerException("ERROR: Disc length is non-positive .");
+		}
+	}
 }

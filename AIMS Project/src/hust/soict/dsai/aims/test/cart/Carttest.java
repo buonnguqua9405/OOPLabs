@@ -1,9 +1,11 @@
 package hust.soict.dsai.aims.test.cart;
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 public class Carttest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LimitExceededException {
         Cart cart = new Cart();
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The lion king", "Animation", "Roger Allers", 87, 19.95f);
         cart.addMedia(dvd1);
